@@ -14,7 +14,7 @@ gidTest = Core.class()
 function gidTest:run(search_pattern)
 	local testCount = 0
 	local testCountSucceed = 0
-	local testCountFailed  = 0
+	local testCountFailed = 0
 	local testFinalResult = "Failed"
 	local testResult = false
 	
@@ -53,7 +53,33 @@ function gidTest:run(search_pattern)
 	
 	print("------[ Result: " .. testFinalResult .. " (" .. testCountSucceed .. "/" .. testCount .. ")]------")
 	print("")
+	gidTest:visualFeedback(testCountFailed == 0)
 
+end
+
+--
+-- Function: visualFeedback
+-- Gives a visual feedback on the application to show how the test suite completed
+-- Draws a transparant square in the top left corner
+-- Red means failed and green means succes!
+--
+function gidTest:visualFeedback(status)
+	local square = Shape.new()
+	local color = 0xff0000 -- default is red
+	print(status)
+	if(status==true) then
+		color = 0x00ff00 -- change to green
+	end	
+	square:setFillStyle(Shape.SOLID, color, 0.7)
+	 
+	square:beginPath()
+	square:lineTo(0, 100)
+	square:lineTo(100, 100)
+	square:lineTo(100, 0)
+	square:lineTo(0, 0)
+	square:endPath()
+	 
+	stage:addChild(square)
 end
 
 --
