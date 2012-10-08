@@ -19,7 +19,7 @@ This shows something like this in the console:
 Work in progress
 =======
 Committed an initial version, now I am going to work with it and see into what it grows.  
-Be warned: In its current state gidTest is a very amateurish framework :)
+Be warned: In its current state gidTest is a very amateuristic framework :)
 
 License
 =======
