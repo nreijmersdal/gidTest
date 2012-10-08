@@ -40,6 +40,9 @@ function gidTest:run(search_pattern)
 				print(key .. " Succeeded")
 				testCountSucceed = testCountSucceed + 1
 			else
+				if(testResult==nil) then
+					testResult = "Test function did not return a state..."
+				end
 				print(key .. " Failed: " .. testResult)
 				testCountFailed = testCountFailed + 1
 			end	
