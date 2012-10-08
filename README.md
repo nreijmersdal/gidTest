@@ -10,8 +10,10 @@ Goals
 
 How to use
 =======
-Load this fully working project with example test_cases into Gideros Studio.  
-Clone the projecy somewhere and open the gidTest.proj file into Gideros Studio and run the Project.
+* Clone the project
+* Open the gidTest.proj file in Gideros Studio
+* Start the Gideros Player
+* Run the Project
 
 This shows something like this in the output window:
 
@@ -25,6 +27,7 @@ This shows something like this in the output window:
     ------------------------------
     Result: Failed (2/3)
 
+Also a transparant square will be drawn in the application, showing the state of the testsuite, either red of green.
 
 Work in progress
 =======
