@@ -17,9 +17,11 @@ This shows something like this in the output window:
 
     gidTest tests: 3
     ------------------------------
-    test_type Succeeded
-    test_true Succeeded
-    test_false Failed: This test fails
+    test_type: Succeeded
+    test_true: Succeeded
+    test_false:
+    * This test fails (assertEquals: actual:true, expected:false)
+    * Failed
     ------------------------------
     Result: Failed (2/3)
 
