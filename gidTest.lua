@@ -100,7 +100,7 @@ function gidTest:assertEquals(expected, actual, message)
 	if(actual == expected) then
 		return true
 	else
-		return message
+		return message .. " (Actual: " .. tostring(actual) .. ", Expected: " .. tostring(expected) .. ")"
 	end
 end
 
@@ -115,7 +115,7 @@ function gidTest:assertNotEquals(expected, actual, message)
 	end
 
 	if(actual == expected) then
-		return message
+		return message .. " (Actual: " .. tostring(actual) .. ", Expected: " .. tostring(expected) .. ")"
 	else
 		return true
 	end
