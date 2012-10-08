@@ -2,24 +2,32 @@ gidTest
 =======
 gidTest is a simplistic test framework for Gideros Mobile applications (http://www.giderosmobile.com/)
 
+Goals
+======
+* jUnit style of tests
+* Support TDD (Test Driven Development) within Gideros Studio
+* Give fast visual feedback
+
 How to use
 =======
 Load this fully working project with example test_cases into Gideros Studio.  
 Clone the projecy somewhere and open the gidTest.proj file into Gideros Studio and run the Project.
 
-This shows something like this in the console:
+This shows something like this in the output window:
 
-    ------[ gidTest tests: 3 ]------
+    gidTest tests: 3
+    ------------------------------
     test_type Succeeded
     test_true Succeeded
     test_false Failed: This test fails
-    ------[ Result: Failed (2/3)]-----
+    ------------------------------
+    Result: Failed (2/3)
 
 
 Work in progress
 =======
-Committed an initial version, now I am going to work with it and see into what it grows.  
-Be warned: In its current state gidTest is a very amateuristic framework :)
+Committed an initial version, now I am going to work with it and see what it grows into.  
+Be warned: In its current state gidTest is a very amateuristic framework, I am not a professional developer. :)
 
 License
 =======
