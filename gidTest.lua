@@ -30,7 +30,8 @@ function gidTest:run(search_pattern)
 	end
 
 	print("")
-	print("------[ gidTest tests: " .. testCount .. " ]------")
+	print("gidTest tests: " .. testCount)
+	print("----------------------------------")
 
 	-- Find and run all tests
 	for key,value in pairs(_G) do
@@ -54,7 +55,8 @@ function gidTest:run(search_pattern)
 		testFinalResult = "Succeeded"
 	end
 	
-	print("------[ Result: " .. testFinalResult .. " (" .. testCountSucceed .. "/" .. testCount .. ")]------")
+	print("----------------------------------")
+	print("Result: " .. testFinalResult .. " (" .. testCountSucceed .. "/" .. testCount .. ")")
 	print("")
 	gidTest:visualFeedback(testCountFailed == 0)
 
@@ -69,7 +71,7 @@ end
 function gidTest:visualFeedback(status)
 	local square = Shape.new()
 	local color = 0xff0000 -- default is red
-	print(status)
+
 	if(status==true) then
 		color = 0x00ff00 -- change to green
 	end	
@@ -86,14 +88,11 @@ function gidTest:visualFeedback(status)
 end
 
 --
--- Function: assert_eq
+-- Function: assertEquals
 -- Checks if the actual value equals the expected value
 -- If this is not the case it returns the message
 --
-function gidTest:assert_eq(actual, expected, message)
-	if(expected==nil) then
-		expected = true
-	end
+function gidTest:assertEquals(expected, actual, message)
 	if(message==nil) then
 		message = ""
 	end
@@ -102,5 +101,22 @@ function gidTest:assert_eq(actual, expected, message)
 		return true
 	else
 		return message
+	end
+end
+
+--
+-- Function: assertNotEquals
+-- Checks if the actual value is not equal the expected value
+-- If this is not the case it returns the message
+--
+function gidTest:assertNotEquals(expected, actual, message)
+	if(message==nil) then
+		message = ""
+	end
+
+	if(actual == expected) then
+		return message
+	else
+		return true
 	end
 end
