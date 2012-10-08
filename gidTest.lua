@@ -6,6 +6,11 @@
 
 gidTest = Core.class()
 
+function gidTest:init()
+	self.report = ""
+	self.testStatus = true
+end
+
 --
 -- Function: run
 -- Runs all global functions that start with the name test_
@@ -29,22 +34,21 @@ function gidTest:run(search_pattern)
 		end
 	end
 
-	print("")
-	print("gidTest tests: " .. testCount)
-	print("----------------------------------")
+	testSuite:appendReport("\n")
+	testSuite:appendReport("gidTest tests: " .. testCount .. "\n")
+	testSuite:appendReport("----------------------------------\n")
 
 	-- Find and run all tests
 	for key,value in pairs(_G) do
 		if(string.find(key, search_pattern)) then
-			testResult = _G[key]()
-			if(testResult==true) then
-				print(key .. " Succeeded")
+			testSuite:appendReport(key .. ":")
+			testSuite.testStatus = true
+			_G[key]()-- run test
+			if(testSuite.testStatus==true) then
+				testSuite:appendReport(" Succes\n")
 				testCountSucceed = testCountSucceed + 1
 			else
-				if(testResult==nil) then
-					testResult = "Test function did not return a state..."
-				end
-				print(key .. " Failed: " .. testResult)
+				testSuite:appendReport("\n* Failed\n")
 				testCountFailed = testCountFailed + 1
 			end	
 		end
@@ -55,10 +59,12 @@ function gidTest:run(search_pattern)
 		testFinalResult = "Succeeded"
 	end
 	
-	print("----------------------------------")
-	print("Result: " .. testFinalResult .. " (" .. testCountSucceed .. "/" .. testCount .. ")")
-	print("")
+	testSuite:appendReport("----------------------------------\n")
+	testSuite:appendReport("Result: " .. testFinalResult .. " (" .. testCountSucceed .. "/" .. testCount .. ")\n")
+	testSuite:appendReport("\n")
 	gidTest:visualFeedback(testCountFailed == 0)
+
+	print(self.report)
 
 end
 
@@ -88,11 +94,19 @@ function gidTest:visualFeedback(status)
 end
 
 --
+-- Function: appendReport
+-- appends text to the the report
+--
+function gidTest:appendReport(text)
+	self.report = self.report .. text
+end
+
+--
 -- Function: assertEquals
 -- Checks if the actual value equals the expected value
 -- If this is not the case it returns the message
 --
-function gidTest:assertEquals(expected, actual, message)
+function assertEquals(expected, actual, message)
 	if(message==nil) then
 		message = ""
 	end
@@ -100,7 +114,9 @@ function gidTest:assertEquals(expected, actual, message)
 	if(actual == expected) then
 		return true
 	else
-		return message .. " (Actual: " .. tostring(actual) .. ", Expected: " .. tostring(expected) .. ")"
+		testSuite.testStatus = false
+		testSuite:appendReport("\n* " .. message .. " (assertEquals: actual:" .. tostring(actual) .. ", expected:" .. tostring(expected) .. ")")
+		return false
 	end
 end
 
@@ -109,14 +125,17 @@ end
 -- Checks if the actual value is not equal the expected value
 -- If this is not the case it returns the message
 --
-function gidTest:assertNotEquals(expected, actual, message)
+function assertNotEquals(expected, actual, message)
 	if(message==nil) then
 		message = ""
 	end
 
 	if(actual == expected) then
-		return message .. " (Actual: " .. tostring(actual) .. ", Expected: " .. tostring(expected) .. ")"
+		testSuite:appendReport("\n* " .. message .. " (assertNotEquals: actual:" .. tostring(actual) .. ", expected:" .. tostring(expected) .. ")")
+		testSuite.testStatus = false
+		return false
 	else
 		return true
 	end
 end
+
