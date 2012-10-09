@@ -34,6 +34,11 @@ Work in progress
 Committed an initial version, now I am going to work with it and see what it grows into.  
 Be warned: In its current state gidTest is a very amateuristic framework, I am not a professional developer. :)
 
+Continuous Intergration
+=======
+You can use the 'gdrbridge.exe' tool from Gideros to start the project against a player (which you can also start from the command line)  
+This means that it should be possible to run your tests from a CI server like [Jenkins](http://jenkins-ci.org/)
+
 License
 =======
 Copyright (c) 2012 Niels van Reijmersdal
