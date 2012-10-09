@@ -34,21 +34,21 @@ function gidTest:run(search_pattern)
 		end
 	end
 
-	testSuite:appendReport("\n")
-	testSuite:appendReport("gidTest tests: " .. testCount .. "\n")
-	testSuite:appendReport("----------------------------------\n")
+	self:appendReport("\n")
+	self:appendReport("gidTest tests: " .. testCount .. "\n")
+	self:appendReport("----------------------------------\n")
 
 	-- Find and run all tests
 	for key,value in pairs(_G) do
 		if(string.find(key, search_pattern)) then
-			testSuite:appendReport(key .. ":")
-			testSuite.testStatus = true
+			self:appendReport(key .. ":")
+			self.testStatus = true
 			_G[key]()-- run test
 			if(testSuite.testStatus==true) then
-				testSuite:appendReport(" Succes\n")
+				self:appendReport(" Succes\n")
 				testCountSucceed = testCountSucceed + 1
 			else
-				testSuite:appendReport("\n* Failed\n")
+				self:appendReport("\n* Failed\n")
 				testCountFailed = testCountFailed + 1
 			end	
 		end
@@ -59,9 +59,9 @@ function gidTest:run(search_pattern)
 		testFinalResult = "Succeeded"
 	end
 	
-	testSuite:appendReport("----------------------------------\n")
-	testSuite:appendReport("Result: " .. testFinalResult .. " (" .. testCountSucceed .. "/" .. testCount .. ")\n")
-	testSuite:appendReport("\n")
+	self:appendReport("----------------------------------\n")
+	self:appendReport("Result: " .. testFinalResult .. " (" .. testCountSucceed .. "/" .. testCount .. ")\n")
+	self:appendReport("\n")
 	gidTest:visualFeedback(testCountFailed == 0)
 
 	print(self.report)
