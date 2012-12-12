@@ -32,7 +32,7 @@ Also a transparant square will be drawn in the application, showing the state of
 Work in progress
 =======
 Committed an initial version, now I am going to work with it and see what it grows into.  
-Be warned: In its current state gidTest is a very amateuristic framework, I am not a professional developer. :)
+Be warned: In its current state gidTest is a very incomplete framework and work in progress.
 
 Continuous Integration
 =======
