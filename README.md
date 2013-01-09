@@ -4,7 +4,7 @@ gidTest is a simplistic test framework for [Gideros Mobile](http://www.giderosmo
 
 Goals
 ======
-* jUnit style of tests
+
 * Support [TDD](http://en.wikipedia.org/wiki/Test-driven_development) within [Gideros Studio](http://www.giderosmobile.com/gideros-studio-features/)
 * Give fast visual feedback
 
